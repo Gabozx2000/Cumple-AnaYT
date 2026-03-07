@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Feliz Cumpleaños</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+color:white;
+text-align:center;
+background:#000014;
+overflow-x:hidden;
+}
+
+/* estrellas */
+
+.estrellas{
+position:fixed;
+width:100%;
+height:200%;
+background-image:
+radial-gradient(white 1px, transparent 1px),
+radial-gradient(white 1px, transparent 1px),
+radial-gradient(white 2px, transparent 2px);
+background-size:100px 100px,150px 150px,200px 200px;
+animation:estrellas 70s linear infinite;
+opacity:0.8;
+z-index:0;
+}
+
+@keyframes estrellas{
+from{transform:translateY(0);}
+to{transform:translateY(-1000px);}
+}
+
+/* corazones */
+
+.corazon{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:subir 8s linear infinite;
+z-index:1;
+}
+
+@keyframes subir{
+from{transform:translateY(0);opacity:1;}
+to{transform:translateY(-900px);opacity:0;}
+}
+
+/* paginas */
+
+.pagina{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:30px;
+position:relative;
+z-index:2;
+opacity:0;
+transform:translateY(20px);
+transition:all 0.8s ease;
+}
+
+.pagina.activa{
+opacity:1;
+transform:translateY(0);
+}
+
+/* tarjeta */
+
+.tarjeta{
+background:rgba(0,0,0,0.6);
+padding:30px;
+border-radius:15px;
+max-width:360px;
+width:90%;
+}
+
+/* botones */
+
+button{
+margin-top:15px;
+padding:10px 22px;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+opacity:0;
+}
+
+/* galeria */
+
+.galeria{
+width:90%;
+max-width:600px;
+margin-top:30px;
+overflow-x:auto;
+scroll-behavior:smooth;
+}
+
+.foto{
+display:flex;
+margin:20px 0;
+opacity:0;
+}
+
+.foto img{
+width:60%;
+border-radius:12px;
+}
+
+.izq{
+justify-content:flex-start;
+}
+
+.der{
+justify-content:flex-end;
+}
+
+/* animacion */
+
+.mostrar{
+animation:entrada 1s forwards;
+}
+
+@keyframes entrada{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* regalo */
+
+.regalo{
+font-size:70px;
+cursor:pointer;
+animation:latido 1.5s infinite;
+}
+
+@keyframes latido{
+0%{transform:scale(1);}
+50%{transform:scale(1.15);}
+100%{transform:scale(1);}
+}
+
+/* pagina final */
+
+.final{
+display:flex;
+align-items:flex-start;
+justify-content:center;
+gap:30px;
+flex-wrap:nowrap;
+max-width:900px;
+}
+
+.textoCaja{
+background:rgba(0,0,0,0.55);
+padding:20px;
+border-radius:12px;
+width:350px;
+min-height:220px;
+text-align:left;
+line-height:1.6;
+}
+
+.final img{
+width:250px;
+border-radius:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- MUSICA -->
+
+<audio id="musica" loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="estrellas"></div>
+
+<!-- PAGINA 1 -->
+
+<div class="pagina activa" id="pagina1">
+
+<div class="regalo" onclick="abrirRegalo()">🎁</div>
+
+<div class="tarjeta" id="contenido" style="display:none">
+
+<h1>Feliz Cumpleaños Amorcito</h1>
+
+<h2>AnaYT preciosa ❤️</h2>
+
+<p>
+Gracias por ser siempre como eres y por compartir tu tiempo conmigo.
+</p>
+
+<button id="btnFecha" onclick="irPagina2()">16/03</button>
+
+</div>
+
+</div>
+
+<!-- PAGINA 2 -->
+
+<div class="pagina" id="pagina2">
+
+<h2>
+Porque hoy nació esta mujer tan bella de quien me sigo enamorando cada día más
+</h2>
+
+<div class="galeria">
+
+<div class="foto izq" id="f1"><img src="foto1.jpg"></div>
+<div class="foto der" id="f2"><img src="foto2.jpg"></div>
+<div class="foto izq" id="f3"><img src="foto3.jpg"></div>
+<div class="foto der" id="f4"><img src="foto4.jpg"></div>
+
+</div>
+
+<button id="btnRecuerdos" onclick="irPagina3()">Recuerdos</button>
+
+</div>
+
+<!-- PAGINA 3 -->
+
+<div class="pagina" id="pagina3">
+
+<h2>Cada momento contigo ha sido de lo mejor</h2>
+
+<div class="galeria">
+
+<div class="foto izq" id="r1"><img src="r1.jpg"></div>
+<div class="foto der" id="r2"><img src="r2.jpg"></div>
+<div class="foto izq" id="r3"><img src="r3.jpg"></div>
+<div class="foto der" id="r4"><img src="r4.jpg"></div>
+<div class="foto izq" id="r5"><img src="r5.jpg"></div>
+<div class="foto der" id="r6"><img src="r6.jpg"></div>
+
+</div>
+
+<button id="btnParaTi" onclick="irPagina4()">Para Ti</button>
+
+</div>
+
+<!-- PAGINA 4 -->
+
+<div class="pagina" id="pagina4">
+
+<div class="final">
+
+<div class="textoCaja">
+<p id="textoFinal"></p>
+</div>
+
+<img src="final.jpg">
+
+</div>
+
+</div>
+
+<script>
+
+/* corazones */
+
+setInterval(function(){
+
+let c=document.createElement("div");
+c.className="corazon";
+c.innerHTML="❤️";
+
+c.style.left=Math.random()*100+"%";
+c.style.fontSize=(Math.random()*20+15)+"px";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{c.remove();},8000);
+
+},600);
+
+/* abrir regalo + musica */
+
+function abrirRegalo(){
+
+document.getElementById("contenido").style.display="block";
+document.getElementById("btnFecha").classList.add("mostrar");
+
+let musica=document.getElementById("musica");
+
+musica.volume=0;
+musica.play();
+
+let v=0;
+
+let fade=setInterval(()=>{
+if(v<1){
+v+=0.05;
+musica.volume=v;
+}else{
+clearInterval(fade);
+}
+},200);
+
+}
+
+/* cambiar pagina */
+
+function cambiar(p1,p2){
+
+document.getElementById(p1).classList.remove("activa");
+
+setTimeout(()=>{
+document.getElementById(p1).style.display="none";
+let next=document.getElementById(p2);
+next.style.display="flex";
+setTimeout(()=>{next.classList.add("activa");},50);
+},500);
+
+}
+
+/* pagina 2 */
+
+function irPagina2(){
+
+cambiar("pagina1","pagina2");
+mostrar(["f1","f2","f3","f4"],"btnRecuerdos");
+
+}
+
+/* pagina 3 */
+
+function irPagina3(){
+
+cambiar("pagina2","pagina3");
+mostrar(["r1","r2","r3","r4","r5","r6"],"btnParaTi");
+
+}
+
+/* pagina 4 */
+
+function irPagina4(){
+
+cambiar("pagina3","pagina4");
+
+setTimeout(()=>{
+escribirTexto();
+},800);
+
+}
+
+/* mostrar fotos */
+
+function mostrar(lista,boton){
+
+lista.forEach((id,i)=>{
+
+setTimeout(()=>{
+
+let el=document.getElementById(id);
+el.classList.add("mostrar");
+
+if(i===lista.length-1){
+
+setTimeout(()=>{
+let b=document.getElementById(boton);
+b.classList.add("mostrar");
+},800);
+
+}
+
+},i*1500);
+
+});
+
+}
+
+/* texto escribiendose */
+
+function escribirTexto(){
+
+let texto=[
+"Te amo y te seguiré amando cada año de tu vida.",
+"Desde que llegaste a mi vida todo se siente diferente, más bonito y más especial. Tu sonrisa, tu forma de ser y todo lo que eres hacen que cada día me enamore un poco más de ti.",
+"Espero verte pronto y poder abrazarte lo más fuerte que pueda, Chiiiitooooosss."
+];
+
+let p=0;
+let i=0;
+
+function escribir(){
+
+if(p<texto.length){
+
+if(i<texto[p].length){
+
+document.getElementById("textoFinal").innerHTML+=texto[p].charAt(i);
+i++;
+
+setTimeout(escribir,40);
+
+}else{
+
+document.getElementById("textoFinal").innerHTML+="<br><br>";
+p++;
+i=0;
+
+setTimeout(escribir,400);
+
+}
+
+}
+
+}
+
+escribir();
+
+}
+
+</script>
+
+</body>
+</html>
